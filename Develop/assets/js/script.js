@@ -74,8 +74,10 @@ function handleAddTask(event){
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
+    const parent = event.target.parentNode;
+    parent.remove()
 console.log('hey')
-const CurrentID = event.target
+const CurrentID = event.target.id
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
