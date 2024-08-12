@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../course"
+		},
+		{
+			"path": "../../../projects"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "homework",
+		"git.ignoreLimitWarning": true
+	}
+}

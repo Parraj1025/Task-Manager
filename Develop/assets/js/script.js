@@ -8,6 +8,7 @@ const taskname = document.getElementById('taskname')
 const info = document.getElementById('info')
 const duedates = document.getElementById('datepicker')
 const submitbtn = document.getElementById('submitbtn')
+const deleteBtn = document.getElementById('deleteBtn')
 
 
 
@@ -52,24 +53,29 @@ function renderTaskList() {
     <div id='${tasklist[i].id}' class="card" draggable="true" ondragstart='onDragStart(event)'>
         <div> TaskID: ${tasklist[i].id}</div>
         <div> Due Date: ${tasklist[i].duedate}</div>
-        <div> Task Notes: ${tasklist[i].notes}</div>
+        <input type="checkbox"> Due Today </input>
+        <input type="checkbox"> Due Tomorrow </input>
+        <input type="checkbox"> Due Later </input>
+        <button id="deleteBtn" onclick=handleDeleteTask(event)> DELETE <button>
     </div>
     `
     todo.appendChild(card)
    }
-
-
-
 }
+
+
+
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
     console.log('hey')
+    const id = event.target.clearData
 }
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
-
+console.log('hey')
+const CurrentID = event.target
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
@@ -80,15 +86,16 @@ console.log(cards)
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
  localStorage.getItem('tasks')
+ renderTaskList()
 });
 
-addbtn.addEventListener('click', event => {
-})
 submitbtn.addEventListener('click',event => {
     if (!taskname.value || !info.value || !duedates.value){
         alert('fill out entire form')
     }
     else{
+        inprogress.innerHTML= ''
+        done.innerHTML=''
         todo.innerHTML = ''
     createTaskCard()
     }
@@ -99,9 +106,9 @@ submitbtn.addEventListener('click',event => {
 // DRAGABBLE ELEMENT
 const cards = () => document.getElementById('card')
 //DROPABBLE AREA
-const inprogress = document.getElementById('in-progress-cards')
+const inprogress = document.getElementById('progress')
 const todo = document.getElementById('todo-cards')
-const done = document.getElementById('done-cards')
+const done = document.getElementById('done')
 
 function onDragStart(event) {
     event.dataTransfer.setData('text', event.target.id)
@@ -117,4 +124,8 @@ function onDrop(event) {
     const dropzone = event.target
     dropzone.appendChild(draggableElement)
     event.dataTransfer.clearData()
+    // draggableElement.addEventListener('keyup',)
+    localStorage.setItem(`${draggableElement.id}`,JSON.stringify(event.target.id))
 }
+
+
